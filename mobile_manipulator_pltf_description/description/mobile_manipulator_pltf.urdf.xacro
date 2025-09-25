@@ -9,8 +9,8 @@
 
     <xacro:property name="use_base" value="$(arg use_base)"/>
     <xacro:property name="use_arm" value="$(arg use_arm)"/>
-    <xacro:property name="ur_yt_sim_path" value="$(find ur_yt_sim)"/>
-    <xacro:property name="initial_positions" value="${xacro.load_yaml(ur_yt_sim_path + '/config/initial_positions.yaml')}"/>
+    <xacro:property name="pltf_description_path" value="$(find mobile_manipulator_pltf_description)"/>
+    <xacro:property name="initial_positions" value="${xacro.load_yaml(pltf_description_path + '/config/initial_positions.yaml')}"/>
 
     <xacro:property name="arm_parent_link" value="${'chassis' if use_base else 'world'}"/>
 
@@ -53,7 +53,7 @@
     </xacro:if>
 
     <xacro:if value="$(arg use_arm)">
-      <xacro:include filename="$(find ur_yt_sim)/urdf/ur5_camera_gripper_pltf.urdf.xacro"/>
+      <xacro:include filename="$(find mobile_manipulator_pltf_description)/description/ur5_camera_gripper_pltf.urdf.xacro"/>
 
       <xacro:ur_robot
         name="ur"
